@@ -3,8 +3,10 @@ var correctFinalAnswer;
 var score = 0;
 var category = null;
 var difficulty = null;
+
 function callWhenPageLoads(){
   addClickHandlers();
+  showSettings();
 }
 function addClickHandlers(){
 $('.go').click(handleGoClick);
@@ -25,12 +27,10 @@ $('.gear').click(showSettings);
 }
 
 function handleGoClick(){
-  console.log('go clicked');
   getTriviaData(category, difficulty);
   $('.go').text('Next');
 }
 function changeSettings(){
-  console.log("sets")
   var cat = $('#category :selected');
   var catValue = cat.val();
   category = '&category='+ catValue;
@@ -39,7 +39,6 @@ function changeSettings(){
   difficulty = '&difficulty='+ diffValue;
 }
 function getTriviaData(category, difficulty){
-  console.log(category, difficulty);
   var custUrl = 'https://opentdb.com/api.php?amount=1&type=multiple';
   if (category){
     custUrl+= category;
@@ -48,7 +47,6 @@ function getTriviaData(category, difficulty){
     custUrl+= category;
   }
   $('.answer').text('...');
-  console.log(custUrl)
     var ajaxConfig = {
         dataType: 'json',
         method: 'get',
@@ -61,10 +59,10 @@ function getTriviaData(category, difficulty){
     $.ajax(ajaxConfig);
 }
 function filterCharacters(question, correctAnswer, wrongAnswers){
-  correctAnswer = correctAnswer.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e');
-  var question = question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e');;
+  correctAnswer = correctAnswer.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e').replace(/&amp;/g, '&');
+  var question = question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e').replace(/&amp;/g, '&');
   for(var i = 0; i<wrongAnswers.length; i++){
-    wrongAnswers[i] = wrongAnswers[i].replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e');;
+    wrongAnswers[i] = wrongAnswers[i].replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&eacute;/g, 'e').replace(/&amp;/g, '&');
   }
   sortData(question, correctAnswer, wrongAnswers)
 }
@@ -93,7 +91,6 @@ for(var arrI = 0; arrI<shuffledArray.length; arrI++){
   $('.answer').text(' ');
 }
 function checkAnswer(element){
-  console.log("check")
   var temp = $('.'+element).text();
   if(temp === correctFinalAnswer){
     $('.answer').text('Correct!')
@@ -106,7 +103,6 @@ function checkAnswer(element){
   }
 }
 function updateScore(){
-  console.log("score")
   $('.score').text('Score: '+ score)
 }
 function hideSettings(){
