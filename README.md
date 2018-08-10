@@ -16,4 +16,4 @@
 >I would like to also improve the scoring feature a correct a bug that allows you to inflate your score.
 >More advanced features could be a high score feature and interactive multiplayer.
 
-<trivia.atwebpages.com>
+[trivia.atwebpages.com]
