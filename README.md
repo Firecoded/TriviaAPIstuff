@@ -11,9 +11,7 @@
 
 ### Future/Issues
 
->The project was something fun but not a serious app I would continue but who knows.
->Features that wouldn't be too difficult to add would be an interval to skip to the next question after a correct answer.
->I would like to also improve the scoring feature a correct a bug that allows you to inflate your score.
->More advanced features could be a high score feature and interactive multiplayer.
+>The project was something fun but but could use some polish in the future.
+>Some features I would like to introduce would be, auto question skip, time limit/improved scoring, multiplayer and high score.
 
 [trivia.atwebpages.com](http://trivia.atwebpages.com)
